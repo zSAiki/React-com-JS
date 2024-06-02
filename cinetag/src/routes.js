@@ -2,25 +2,24 @@ import Inicio from "./pages/Inicio";
 import {BrowserRouter,Route,Routes} from "react-router-dom"
 import Fim from "./pages/Fim";
 import Favoritos from "pages/Favoritos/favoritos";
-import Header from "components/Header/header";
-import Footer from "components/Footer/footer";
-import Container from "components/Container/container";
-import FavoritosProvider from "contextos/Favoritos";
+import Player from "pages/Player/player";
+import NaoEncontrado from "pages/NaoEncontrado/naoEncontrado";
+import PaginaBase from "pages/PaginaBasica/paginaBasica";
+
 
 let AppRoutes = () =>{
     return(
         <BrowserRouter>
-        <Header/>
-        <Container>
-            <FavoritosProvider>
+
             <Routes>
-                <Route path="/" element={<Inicio/>}></Route>
-                <Route path="/fim" element={<Fim/>}></Route>
-                <Route path = "/favoritos" element={<Favoritos/>}></Route>
+                <Route path="/" element={<PaginaBase/>}>
+                    <Route index element={<Inicio/>}></Route>
+                    <Route path="fim" element={<Fim/>}></Route>
+                    <Route path = "favoritos" element={<Favoritos/>}></Route>
+                    <Route path =":id" element={<Player/>}></Route>
+                    <Route path ="*" element={<NaoEncontrado />}></Route>
+                </Route>
             </Routes>
-            </FavoritosProvider>
-            </Container>
-            <Footer/>
         </BrowserRouter>
     )
 }
